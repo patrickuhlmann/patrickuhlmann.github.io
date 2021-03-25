@@ -1,2 +1,6 @@
 # patrickuhlmann.github.io
-Website
+
+Run it locally:
+bundle exec jekyll serve
+
+then visit http://localhost:4000
