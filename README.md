@@ -1,6 +1,11 @@
 # patrickuhlmann.github.io
 
-Run it locally:
-bundle exec jekyll serve
+Visit: https://patrickuhlmann.github.io/
 
-then visit http://localhost:4000
+## Build the page locally:
+
+```
+bundle exec jekyll serve
+```
+
+It will then be available under http://localhost:4000
