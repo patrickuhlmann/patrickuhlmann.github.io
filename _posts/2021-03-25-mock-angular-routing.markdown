@@ -11,7 +11,13 @@ describe('ArticleService', () => {
   let router: Router;
  
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [RouterTestingModule.withRoutes([])] });
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([
+          { path: 'overview', component: OverviewComponent },
+        ]),
+      ],
+    });
     router = TestBed.inject<Router>(Router);
   });
  
