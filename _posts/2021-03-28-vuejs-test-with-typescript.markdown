@@ -4,7 +4,7 @@ title:  "Vue 2 Typescript: How to test components with jest"
 date:   2021-03-28 15:00:33 +0100
 categories: vue testing jest
 ---
-Most examples use plain javascript or fail to demonstrate how to run tests including mocking and verifying the template.
+Most examples use plain javascript or fail to demonstrate how to run tests including mocking, props, emitting and verifying the template.
 
 This is the component under test (a contact form). It allows sending a message and either shows a success confirmation in a div or opens a modal dialog on error.
 {% highlight typescript %}
@@ -21,8 +21,12 @@ import { Component, Ref, Vue } from "vue-property-decorator";
   },
 })
 export default class Contact extends Vue {
-  @Ref("successModal") successModal!: Modal;
   @Ref("errorModal") errorModal!: Modal;
+  @Prop({}) readonly successMessage!: string;
+  @Emit("formSent")
+  onFormSent(state: boolean) {
+    return state;
+  }
 
   private success = false;
   private message = "";
@@ -36,8 +40,10 @@ export default class Contact extends Vue {
         },
       });
       this.success = true;
+      this.onFormSent(true);
     } catch (err) {
       this.errorModal.open();
+      this.onFormSent(false);
     }
   }
 }
@@ -50,7 +56,7 @@ export default class Contact extends Vue {
     <button :disabled="!message" v-on:click="send()">Send Message</button>
 
     <div id="success" v-if="success">
-      <p>Message successfully sent</p>
+      <p>{{ successMessage }}</p>
     </div>
 
     <modal message="Failed to send message" ref="errorModal"></modal>
@@ -77,6 +83,7 @@ describe('Contact Page', () => {
     }
 
     wrapper = await shallowMount(Kontakt, {
+      stubs: [ "router-link" ],
       data: () => {
         return {
           service: service,
@@ -85,6 +92,8 @@ describe('Contact Page', () => {
         errorModal() {
          return errorModal;
         },
+      }, propsData: {
+      	successMessage: 'Message sent'
       }
     });
     await wrapper.vm.send();
@@ -92,6 +101,9 @@ describe('Contact Page', () => {
     expect(openErrorFunction.mock.calls.length).toBe(1);
     const success = wrapper.find('#success');
     expect(success.exists()).toBe(false);
+    
+    const formSentEmitted = wrapper.emitted().formSent;
+    expect(formSent![0]).toEqual([true]);
   })
 });
 {% endhighlight %}
@@ -105,3 +117,6 @@ Noteworthy:
   * testing also works with async methods
   * the component including properties and methods can be accessed with ``ẁrapper.vm```. The IDE however will not be able to show (autocomplete, intellisense) you the methods or properties but it will work anyways.
   * ```jest.fn()``` has a property ```mock``` which allows to evaluate all method calls (how often, which arguments, ...)
+  * stubs allows the definition of components that will be replaced with a stub
+  * props can be filled while mounting
+  * emitted events can be checked via wrapper
