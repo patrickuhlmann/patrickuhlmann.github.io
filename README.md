@@ -18,6 +18,6 @@ bundle install
 bundle exec jekyll serve
 ```
 
-Not Jerkyll does not work with Ruby 3.0 as of 28.09.2021
+Note Jerkyll does not work with Ruby 3.0 as of 28.09.2021
 
 It will then be available under http://localhost:4000
