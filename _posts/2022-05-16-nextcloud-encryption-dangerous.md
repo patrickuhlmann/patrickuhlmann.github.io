@@ -15,6 +15,8 @@ At first everything seemed to work. After a while I got some complaints about fi
 
 I decided to disable the encryption and to decrypt everything. Running the command was strange because you can't run it when you disable the encryption or go into maintenance mode. The command run successfully but still most of the files were encrypted. Luckily I found [decrypt-all-files.php](https://github.com/syseleven/nextcloud-tools) that was able to decrypt most files in the user folders.
 
+I am [not the only one having problems](https://help.nextcloud.com/t/decrypt-all-left-many-files-still-encrypted/99066/2). Also there were [issues with the encryption in the past](https://github.com/nextcloud/server/issues/16419).
+
 There was still an issue with the files in the group folders. The group folder oficially [does not support encryption](https://github.com/nextcloud/groupfolders/issues/912). Still the files were there and what was worse was that there was no key material.
 
 The way how the encryption works is that there is a key generated for every file that is encrypted by a master key. Decryption is not possible whithout the key per file. In the data folder you find a folder files which contains the files and a folder files_encryption that contains the key material per file.
