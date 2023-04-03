@@ -1,6 +1,6 @@
 # patrickuhlmann.github.io
 
-Visit: https://patrickuhlmann.github.io/
+Visit: https://patrickuhlmann.github.io/ or https://uhlme.ch
 
 ## Build the page locally:
 
