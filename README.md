@@ -1,23 +1,14 @@
 # patrickuhlmann.github.io
 
-Visit: https://patrickuhlmann.github.io/ or https://uhlme.ch
+Visit: https://uhlme.ch/
 
-## Build the page locally:
+## Preview the page locally:
 
-Setup ruby 2.7:
+Preview the page:
 ```
-curl -L get.rvm.io > rvm-install
-bash < ./rvm-install
-rvm install 2.7.0
-rvm use 2.7.0
+docker run -it --rm -v "$PWD":/usr/src/app -w /usr/src/app -p 4000:4000 ruby:2.7 sh -c "bundle install && bundle exec jekyll serve --host 0.0.0.0"
 ```
-
-Build a page:
-```
-bundle install
-bundle exec jekyll serve
-```
-
-Note Jerkyll does not work with Ruby 3.0 as of 28.09.2021
 
 It will then be available under http://localhost:4000
+
+Note: Jerkyll does not work with Ruby 3.0 as of 23.07.2023
