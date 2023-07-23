@@ -10,7 +10,7 @@ Der Schutz Ihrer Privatsphäre ist mir ein wichtiges Anliegen. Mit der folgenden
 
 ## 2. Verantwortlicher
 
-Bitte verwenden Sie für eine Kontaktaufnahme das <a href="https://uhlme.ch/about/">Kontaktformular</a> auf der Webseite.
+Bitte verwenden Sie für eine Kontaktaufnahme das <a href="https://www.uhlme.ch/about/">Kontaktformular</a> auf der Webseite.
 
 ## 3. Bearbeitung von Personendaten
 
